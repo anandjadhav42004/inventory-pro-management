@@ -1,0 +1,83 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "z_inventory_app",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "Inventory Pro Management",
+    "description": "Professional Inventory Management System",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "z_inventory_app.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "rootApp"
+    },
+    "dependencies": {
+    "minUI5Version": "1.120.0",
+    "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.ui.layout": {}
+    }
+    },
+    "contentDensities": {
+      "cozy": true,
+      "compact": true
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "models": {
+      "inventory": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "Items": [
+            { "ID": "INV-5001", "Name": "MacBook Air M2", "Warehouse": "Section-A", "Qty": 25, "Status": "In Stock", "State": "Success" },
+            { "ID": "INV-5002", "Name": "Dell UltraSharp Monitor", "Warehouse": "Section-B", "Qty": 10, "Status": "Low Stock", "State": "Warning" },
+            { "ID": "INV-5003", "Name": "Logitech MX Master 3", "Warehouse": "Section-A", "Qty": 0, "Status": "Out of Stock", "State": "Error" }
+          ]
+        }
+      }
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "z_inventory_app.view",
+        "controlId": "idAppControl",
+        "controlAggregation": "pages",
+        "async": true
+      },
+      "routes": [
+        { "name": "roleSelection", "pattern": "", "target": "roleSelection" },
+        { "name": "login", "pattern": "login/{role}", "target": "login" },
+        { "name": "adminDash", "pattern": "admin-dash", "target": "adminDash" },
+        { "name": "userDash", "pattern": "user-dash", "target": "userDash" }
+      ],
+      "targets": {
+        "roleSelection": { "viewName": "RoleSelection" },
+        "login": { "viewName": "Login" },
+        "adminDash": { "viewName": "Admin" },
+        "userDash": { "viewName": "User" }
+      }
+    }
+  }
+}

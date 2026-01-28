@@ -1,0 +1,6 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+    <Shell id="shell">
+        <!-- Ye 'idAppControl' manifest.json ke 'controlId' se match hona chahiye -->
+        <App id="idAppControl" />
+    </Shell>
+</mvc:View>

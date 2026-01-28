@@ -1,0 +1,21 @@
+<mvc:View controllerName="z_inventory_app.controller.Login" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m">
+    <Page title="Inventory Secure Access" showNavButton="true" navButtonPress="onBack">
+        <VBox justifyContent="Center" alignItems="Center" class="sapUiLargeMarginTop">
+            <Title id="loginTitle" text="LOGIN" titleStyle="H1" class="sapUiMediumMarginBottom" />
+            
+            <VBox width="320px">
+                <Label text="Username" design="Bold" />
+                <!-- ID MUST BE EXACTLY: userInput -->
+                <Input id="userInput" placeholder="Enter admin or user" />
+                
+                <Label text="Password" design="Bold" class="sapUiSmallMarginTop" />
+                <!-- ID MUST BE EXACTLY: passwordInput -->
+                <Input id="passwordInput" type="Password" placeholder="Enter password" />
+                
+                <Button text="Sign In" type="Emphasized" press="onLogin" width="100%" class="sapUiMediumMarginTop" />
+            </VBox>
+        </VBox>
+    </Page>
+</mvc:View>

@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="inventoryDialog" title="Inventory Asset Details" contentWidth="450px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Label text="Asset ID (Non-Editable)" design="Bold" />
+                <Input id="inputID" placeholder="INV-000" />
+                
+                <Label text="Product Description" design="Bold" class="sapUiSmallMarginTop" />
+                <Input id="inputName" placeholder="Enter product name..." />
+                
+                <Label text="Warehouse Location" design="Bold" class="sapUiSmallMarginTop" />
+                <Input id="inputWH" placeholder="Section / Rack..." />
+                
+                <Label text="Current Stock Quantity" design="Bold" class="sapUiSmallMarginTop" />
+                <StepInput id="inputQty" value="0" min="0" width="100%" />
+            </VBox>
+            
+        </content>
+        <beginButton>
+            <Button id="saveBtn" text="Confirm &amp; Save" type="Emphasized" press="onConfirmAdd" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press="onCloseDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

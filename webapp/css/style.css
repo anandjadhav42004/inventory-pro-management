@@ -1,0 +1,173 @@
+/* ==========================================
+   1. GLOBAL & LANDING PAGE (GLASSMORPHISM)
+   ========================================== */
+.mainBackground {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364) !important;
+}
+
+.glassCard {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px !important;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    padding: 2rem !important; /* Fixed typo from 2ren */
+}
+
+.whiteText { color: #ffffff !important; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.subText { color: #bdc3c7 !important; }
+
+/* ==========================================
+   2. KPI DASHBOARD & CLICKABLE TILES
+   ========================================== */
+.kpiContainer {
+    background: #ffffff !important;
+    padding: 20px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04) !important;
+    border: 1px solid #edf2f7;
+    margin-bottom: 2rem !important;
+}
+
+.kpiTile { 
+    padding: 10px 20px;
+    border-right: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.kpiTile:last-child { border-right: none; }
+
+/* Clickable effect for filtering */
+.clickable {
+    cursor: pointer !important;
+}
+
+.clickable:hover {
+    background: #f0f7ff !important;
+    transform: translateY(-5px);
+    border-radius: 15px;
+}
+
+.kpiWarning { color: #f39c12 !important; font-weight: bold; }
+.kpiError { color: #e74c3c !important; font-weight: bold; }
+
+/* ==========================================
+   3. ANALYTICAL CHARTS (ADMIN CONSOLE)
+   ========================================== */
+.chartContainer {
+    background: #ffffff !important;
+    padding: 20px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04) !important;
+    border: 1px solid #edf2f7;
+    min-height: 200px;
+}
+
+.flex1 { flex: 1; }
+
+/* ==========================================
+   4. INVENTORY GRID & CARDS
+   ========================================== */
+[id$="inventoryGrid"] {
+    display: flex !important;
+    gap: 2rem !important; 
+    padding: 1rem 0 !important;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.inventoryCard {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    border: 1px solid #f0f2f5 !important;
+    padding: 24px !important;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease-out forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+}
+
+/* Elegant Accent Line on Card */
+.inventoryCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #3498db;
+    transition: height 0.3s ease;
+}
+
+.inventoryCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(52, 152, 219, 0.15) !important;
+    border-color: #3498db !important;
+}
+
+.inventoryCard:hover::before {
+    height: 8px;
+}
+
+/* ==========================================
+   5. PROFESSIONAL TABLES
+   ========================================== */
+.proTableShadow {
+    background: #ffffff !important;
+    border-radius: 15px !important;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+    border: 1px solid #f0f2f5 !important;
+    margin-top: 1rem;
+}
+
+.sapMListHdr, .sapMListTblHeaderCell {
+    background-color: #f8fafc !important;
+    padding: 15px !important;
+    border-bottom: 2px solid #edf2f7 !important;
+}
+
+.sapMLIB:hover {
+    background-color: #f0f7ff !important;
+}
+
+/* ==========================================
+   6. UI CONTROLS (SEARCH, BUTTONS, ICONS)
+   ========================================== */
+.sapMSF { 
+    border-radius: 12px !important; 
+    border: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    height: 3rem !important;
+}
+
+.sapMBtnEmphasized {
+    border-radius: 10px !important;
+    background-color: #3498db !important;
+    border: none !important;
+    box-shadow: 0 4px 14px 0 rgba(52, 152, 219, 0.3) !important;
+    font-weight: bold !important;
+}
+
+.subtleIcon {
+    background: #f0f7ff;
+    color: #3498db !important;
+    padding: 12px;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.labelSmall { 
+    font-size: 0.7rem !important; 
+    text-transform: uppercase; 
+    color: #a0aec0; 
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.proTitle { color: #1a202c !important; font-weight: 800 !important; font-size: 1.2rem !important; }
+.idText { color: #a0aec0 !important; font-size: 0.8rem; letter-spacing: 0.5px; }

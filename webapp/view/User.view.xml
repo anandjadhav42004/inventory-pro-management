@@ -1,0 +1,121 @@
+<mvc:View controllerName="z_inventory_app.controller.User" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m">
+    <Page title="Warehouse Operations" showNavButton="true" navButtonPress="onLogout">
+        
+        <headerContent>
+            <Button icon="sap-icon://log" text="Logout" press="onLogout" type="Transparent" />
+            <Button icon="sap-icon://add" text="Add Product" type="Emphasized" press="onOpenAddDialog" />
+            <Button icon="sap-icon://refresh" press="onRefresh" type="Transparent" />
+        </headerContent>
+
+        <subHeader>
+            <OverflowToolbar>
+                <SearchField 
+                    width="100%" 
+                    placeholder="Search by Product Name or ID..." 
+                    search=".onSearch" />
+            </OverflowToolbar>
+        </subHeader>
+
+        <content>
+            <VBox class="sapUiMediumMargin">
+                
+                <!-- 1. KPI Dashboard Section -->
+                <HBox justifyContent="SpaceAround" class="sapUiSmallMarginBottom kpiContainer">
+                    <VBox alignItems="Center" class="kpiTile">
+                        <Label text="TOTAL ASSETS" design="Bold" />
+                        <Title text="{inventory>/TotalCount}" titleStyle="H1" />
+                    </VBox>
+                    <VBox alignItems="Center" class="kpiTile">
+                        <Label text="LOW STOCK" design="Bold" />
+                        <Title text="{inventory>/LowStockCount}" titleStyle="H1" class="kpiWarning" />
+                    </VBox>
+                    <VBox alignItems="Center" class="kpiTile">
+                        <Label text="OUT OF STOCK" design="Bold" />
+                        <Title text="{inventory>/OutOfStockCount}" titleStyle="H1" class="kpiError" />
+                    </VBox>
+                </HBox>
+
+                <!-- 2. Visual Cards Section -->
+                <Title text="Real-time Inventory Monitor" titleStyle="H2" class="sapUiMediumMarginBottom" />
+                <FlexBox 
+                    id="inventoryGrid" 
+                    items="{inventory>/Items}" 
+                    wrap="Wrap" 
+                    justifyContent="Start" 
+                    renderType="Bare"
+                    class="sapUiMediumMarginBottom">
+                    <items>
+                        <VBox class="inventoryCard sapUiSmallMargin" width="20rem">
+                            <!-- Header -->
+                            <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                <VBox>
+                                    <Title text="{inventory>Name}" class="proTitle" />
+                                    <Text text="ID: {inventory>ID}" class="idText" />
+                                </VBox>
+                                <core:Icon src="sap-icon://product" size="1.2rem" class="subtleIcon" />
+                            </HBox>
+
+                            <!-- Quantity Section -->
+                            <VBox class="sapUiMediumMarginTop">
+                                <Label text="Current Inventory" class="labelSmall" />
+                                <HBox justifyContent="SpaceBetween" alignItems="End">
+                                    <Title text="{inventory>Qty}" titleStyle="H1" />
+                                    <ObjectStatus text="{inventory>Status}" state="{inventory>State}" inverted="true" />
+                                </HBox>
+                            </VBox>
+
+                            <!-- Location Footer -->
+                            <HBox class="sapUiSmallMarginTop" alignItems="Center">
+                                <core:Icon src="sap-icon://map-2" size="0.8rem" color="#a0aec0" class="sapUiTinyMarginEnd" />
+                                <Text text="{inventory>Warehouse}" class="idText" />
+                            </HBox>
+                        </VBox>
+                    </items>
+                </FlexBox>
+
+                <!-- 3. Detailed List Section -->
+                <Title text="Detailed Inventory List" titleStyle="H3" class="sapUiMediumMarginTop sapUiSmallMarginBottom" />
+                <Table id="inventoryTable" 
+                       items="{inventory>/Items}" 
+                       sticky="HeaderToolbar,InfoToolbar,ColumnHeaders" 
+                       class="proTableShadow">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <Title text="Warehouse Items ({= ${inventory>/Items}.length })" level="H4" />
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://sort" text="Sort Price" press="onSortPrice" type="Transparent" />
+                            <Button icon="sap-icon://download" text="Export" press="onExport" type="Transparent" />
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="15em"><Text text="Product" /></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Category" /></Column>
+                        <Column hAlign="End"><Text text="Stock" /></Column>
+                        <Column hAlign="End"><Text text="Price (USD)" /></Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Warehouse" /></Column>
+                        <Column hAlign="Center" width="8em"><Text text="Status" /></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press="onCardPress">
+                            <cells>
+                                <VBox>
+                                    <Text text="{inventory>Name}" class="sapUiTinyMarginBottom" style="font-weight:bold" />
+                                    <Text text="{inventory>ID}" class="idText" />
+                                </VBox>
+                                <Text text="{inventory>Category}" />
+                                <Text text="{inventory>Qty}" />
+                                <Text text="${inventory>Price}" />
+                                <Text text="{inventory>Warehouse}" />
+                                <ObjectStatus text="{inventory>Status}" state="{inventory>State}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

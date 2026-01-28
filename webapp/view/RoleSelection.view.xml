@@ -1,0 +1,47 @@
+<mvc:View controllerName="z_inventory_app.controller.RoleSelection" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m">
+    <Page showHeader="false" class="mainBackground">
+        <!-- Main Wrapper: Ensures perfect full-screen centering -->
+        <VBox justifyContent="Center" alignItems="Center" height="100%" width="100%">
+            
+            <!-- Branding Header Section -->
+            <VBox alignItems="Center" class="sapUiLargeMarginBottom">
+                <VBox class="logoContainer sapUiSmallMarginBottom">
+                    <Image src="https://cdn-icons-png.flaticon.com/512/763/763033.png" width="200px" />
+                </VBox>
+                <Title text="INVENTORY PRO" titleStyle="H1" class="whiteText proTitle" />
+                <Text text="Enterprise Resource &amp; Warehouse Management" class="subText italicText" />
+            </VBox>
+            
+            <!-- The Access Card: Redesigned for a "Pro" look -->
+            <VBox width="420px" class="glassCard loginContainer">
+                <VBox class="sapUiMediumPadding">
+                    <Label text="AUTHORIZED ACCESS ONLY" class="bwLabel" />
+                    
+                    <!-- THE UNIQUE BLACK & WHITE SELECT -->
+                    <Select id="roleSelect" width="100%" class="bwSelect sapUiMediumMarginBottom">
+                        <items>
+                            <core:Item key="admin" text="Administrator Control Panel" />
+                            <core:Item key="user" text="Warehouse Staff Portal" />
+                        </items>
+                    </Select>
+                    
+                    <!-- Modern Action Button -->
+                    <Button text="Proceed to Login" 
+                            type="Emphasized" 
+                            press="onProceed" 
+                            width="100%" 
+                            class="proActionBtn" />
+                </VBox>
+                
+                <!-- Footer within the card for a unique look -->
+                <HBox justifyContent="Center" class="cardFooter">
+                    <Text text="Secure Session v2.4" class="footerText" />
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </Page>
+</mvc:View>

@@ -1,0 +1,101 @@
+<mvc:View controllerName="z_inventory_app.controller.Admin"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m"
+    xmlns:mc="sap.suite.ui.microchart"> <!-- Chart library added -->
+    
+    
+    <Page title="Administrator Inventory Console">
+        <headerContent>
+        
+    <!-- Naya "Add Product" button -->
+    <Button icon="sap-icon://add" text="New Product" type="Emphasized" press="onOpenAddDialog" />
+    <Button icon="sap-icon://delete" text="Delete Selected" type="Reject" press="onDeleteSelected" />
+    <Button icon="sap-icon://excel-attachment" text="Export Excel" press="onExportExcel" />
+    <Button icon="sap-icon://log" text="Logout" press="onLogout" />
+
+        </headerContent>
+
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <!-- Top Row: KPIs + Analytical Chart -->
+                <HBox justifyContent="SpaceBetween" alignItems="Center" wrap="Wrap" class="sapUiSmallMarginBottom">
+                    <!-- KPI Tiles (Now Clickable) -->
+                    <HBox class="kpiContainer flex1">
+                        <VBox alignItems="Center" class="kpiTile clickable" press="onFilterTile">
+                            <Label text="TOTAL ASSETS" design="Bold" />
+                            <Title text="{inventory>/TotalCount}" titleStyle="H1" />
+                            <customData><core:CustomData key="status" value="All" /></customData>
+                        </VBox>
+                        <VBox alignItems="Center" class="kpiTile clickable" press="onFilterTile">
+                            <Label text="LOW STOCK" design="Bold" color="Critical" />
+                            <Title text="{inventory>/LowStockCount}" titleStyle="H1" class="kpiWarning" />
+                            <customData><core:CustomData key="status" value="Low Stock" /></customData>
+                        </VBox>
+                        <VBox alignItems="Center" class="kpiTile clickable" press="onFilterTile">
+                            <Label text="OUT OF STOCK" design="Bold" />
+                            <Title text="{inventory>/OutOfStockCount}" titleStyle="H1" class="kpiError" />
+                            <customData><core:CustomData key="status" value="Out of Stock" /></customData>
+                        </VBox>
+                    </HBox>
+
+                    <!-- NEW: Analytical MicroChart -->
+                    <!-- Right Side: Analytical Chart Container -->
+<VBox class="chartContainer flex1 sapUiMediumMarginBegin">
+    <Title text="Stock Distribution by Section" titleStyle="H4" class="sapUiSmallMarginBottom" />
+    
+    <mc:InteractiveBarChart labelWidth="25%" bars="{inventory>/ChartData}">
+        <mc:bars>
+            <mc:InteractiveBarChartBar 
+                label="{inventory>Section}" 
+                value="{inventory>Value}" 
+                color="{inventory>Color}" />
+        </mc:bars>
+    </mc:InteractiveBarChart>
+</VBox>
+                </HBox>
+
+                <!-- Table with Multi-Select and Search -->
+                <Table id="adminTable" mode="MultiSelect" items="{inventory>/Items}" class="proTableShadow">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <Title text="Warehouse Master Inventory" level="H4" />
+                            <ToolbarSpacer />
+                            <SearchField width="300px" placeholder="Search items..." search="onSearch" />
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="100px"><Text text="Asset ID" /></Column>
+                        <Column><Text text="Product Details" /></Column>
+                        <Column hAlign="Center" width="200px"><Text text="Stock Qty" /></Column>
+                        <Column hAlign="Center"><Text text="Status" /></Column>
+                        <Column hAlign="End" width="100px"><Text text="Action" /></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{inventory>ID}" />
+                                <VBox>
+                                    <Text text="{inventory>Name}" style="font-weight:bold" />
+                                    <Text text="{inventory>Warehouse}" class="idText" />
+                                </VBox>
+                                <!-- ColumnListItem ke andar check karein -->
+                               <StepInput 
+                                     value="{inventory>Qty}" 
+                                     change="onQtyChange" /> <!-- Ye event zaroori hai -->
+
+                                <ObjectStatus 
+                                     text="{inventory>Status}" 
+                                     state="{inventory>State}" 
+                                     inverted="true" />
+                               
+                                <HBox justifyContent="End">
+                                    <Button icon="sap-icon://edit" type="Transparent" />
+                                    <Button icon="sap-icon://delete" type="Transparent" color="Reject" />
+                                </HBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
